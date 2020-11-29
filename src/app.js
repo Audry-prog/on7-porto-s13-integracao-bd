@@ -4,17 +4,17 @@ const bodyParser = require("body-parser")
 //2 colocar import do mongoose
 const mongoose = require("mongoose")
 
-const app = express()
+const app = express();
 
 //rotas
-const index = require("./routes/index")
-const tarefas = require("./routes/tarefasRoute")
-const colaboradoras = require("./routes/colaboradorasRoute")
+const index = require("./routes/index");
+const tarefas = require("./routes/tarefasRoute");
+const colaboradoras = require("./routes/colaboradorasRoute");
 
 //adicionar string de conexão do mongo
 mongoose.connect("mongodb://localhost:27017/reprograma",  { useNewUrlParser: true, useUnifiedTopology: true });
 
-//configuração de configuração do mongo
+//configuração do mongo
 let db = mongoose.connection;
 db.on("error", console.log.bind(console, "connection error:"))
 db.once("open", function (){
@@ -38,4 +38,4 @@ app.use("/", index)
 app.use("/tarefas", tarefas)
 app.use("/colaboradoras", require("./routes/colaboradorasRoute"))
 
-module.exports = app
+module.exports = app;
